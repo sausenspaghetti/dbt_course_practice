@@ -9,6 +9,5 @@ select
     {{ adapter.quote("passenger_id") }},
     {{ adapter.quote("passenger_name") }},
     {{ adapter.quote("contact_data") }}
-
 from 
-    {{ source('demo_src', 'tickets') }}
+    {{ ref('stg_flights__tickets') }}
