@@ -1,0 +1,64 @@
+models:
+  # Model name must match the filename of a model -- including case sensitivity
+  - name: fct_bookings
+    description: Факты бронирования
+    docs:
+      show: true
+      node_color: red # Use name (such as node_color: purple) or hex code with quotes (such as node_color: "#cd7f32")
+    latest_version: 1
+    versions:
+      - v: 1
+    config:
+      contract: {enforced: true}    
+    meta:
+      owner: "ivan_divan@test.ololo"
+      contact_tg: ivan_divan
+      status: "slowly self-studing"
+
+    columns:
+      - name: book_ref
+        data_type: bpchar(6)
+        constraints:
+          - type: not_null
+      - name: book_date
+        data_type: timestamptz
+      - name: total_amount
+        data_type: numeric(10, 2)
+        constraints:
+          - type: check
+            expression: "total_amount >= 0"
+        tests:
+          - not_null
+  
+
+
+  - name: fct_ticket_flights
+    description: Билеты, рейсы и посадочные талоны
+    docs:
+      show: true
+      node_color: green # Use name (such as node_color: purple) or hex code with quotes (such as node_color: "#cd7f32")
+    latest_version: 1
+    versions:
+      - v: 1
+    config:
+      contract: {enforced: true}    
+    meta:
+      owner: "ivan_divan@test.ololo"
+      contact_tg: ivan_divan
+      status: "slowly self-studing"
+
+    columns:
+      - name: ticket_no
+        data_type: bpchar(13)
+      - name: flight_id
+        data_type: int4
+      - name: fare_conditions
+        data_type: varchar(10)
+      - name: amount
+        data_type: numeric(10, 2)
+      - name: boarding_pass_exists
+        data_type: int4
+      - name: boarding_no
+        data_type: int4
+      - name: seat_no
+        data_type: varchar(7)
