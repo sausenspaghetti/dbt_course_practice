@@ -14,8 +14,9 @@ select
     end as boarding_pass_exists, 
     bp.boarding_no,
     bp.seat_no
-from 
+from
     {{ ref('stg_flights__ticket_flights') }} tf
+
 
 left join {{ ref('stg_flights__boarding_passes')}} bp
     on bp.ticket_no = tf.ticket_no and bp.flight_id = tf.flight_id

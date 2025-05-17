@@ -4,10 +4,16 @@
     )
 }}
 select
-    {{ adapter.quote("ticket_no") }},
-    {{ adapter.quote("book_ref") }},
-    {{ adapter.quote("passenger_id") }},
-    {{ adapter.quote("passenger_name") }},
-    {{ adapter.quote("contact_data") }}
+    ft.ticket_no,
+    ft.book_ref,
+    ft.passenger_id,
+    ft.passenger_name,
+    ft.contact_data
 from 
-    {{ ref('stg_flights__tickets') }}
+    {{ ref('stg_flights__tickets') }} ft
+
+left join {{ ref('employees')}} emp
+    on emp.passenger_id = ft.passenger_id
+
+where
+     emp.passenger_id is null
