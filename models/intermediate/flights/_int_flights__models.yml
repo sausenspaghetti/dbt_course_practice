@@ -9,17 +9,20 @@ models:
     versions:
       - v: 1
     config:
-      contract: {enforced: true}    
-    meta:
-      owner: "ivan_divan@test.ololo"
-      contact_tg: ivan_divan
-      status: "slowly self-studing"
+      contract: {enforced: true}  
+      meta: {owner: "ivan_divan@test.ololo", status: in_dev, my_meta: new}
+      #   owner: "yml_file_owner@gmail.com"
+      status: in_dev 
 
     columns:
       - name: book_ref
         data_type: varchar(8)
         constraints:
           - type: not_null
+        tags:
+          - "fact"
+          - "flights"
+        tests: [not_null, unique]
       - name: book_date
         data_type: timestamptz
       - name: total_amount
