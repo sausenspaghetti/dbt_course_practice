@@ -19,3 +19,9 @@ select
     {%- endfor %}
 from
     {{ ref('stg_flights__flights')}}
+
+{% set navigation = [('index.html', 'Index'), ('about.html', 'About')] %}
+{% for row in navigation  %}
+    {{ row[0] }} {{ row[1] }}
+{% endfor %}
+
