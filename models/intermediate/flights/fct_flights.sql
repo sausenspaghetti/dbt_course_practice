@@ -1,6 +1,11 @@
 {{
   config(
-        materialized = 'table'
+        materialized = 'table',
+        post_hook="
+            {% do log(this.node, info=True) %}
+            {# {% set dependencies_count = get_dependencies_count(this) %}
+            {% do log(dependencies_count, info=True) %} #}
+        "
     )
 }}
 select
